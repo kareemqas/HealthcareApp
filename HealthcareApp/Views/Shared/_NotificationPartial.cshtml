@@ -1,0 +1,22 @@
+﻿<div id="notification" class="alert alert-info" style="display: none;">
+    <span id="notification-message"></span>
+</div>
+
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script>
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/notificationHub")
+        .build();
+
+    connection.on("ReceiveNotification", function (message) {
+        document.getElementById("notification-message").innerText = message;
+        document.getElementById("notification").style.display = "block";
+        setTimeout(() => {
+            document.getElementById("notification").style.display = "none";
+        }, 5000); // Hide notification after 5 seconds
+    });
+
+    connection.start().catch(function (err) {
+        console.error(err.toString());
+    });
+</script>

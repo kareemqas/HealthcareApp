@@ -1,0 +1,31 @@
+﻿@model Appointment
+
+<h2>Schedule Appointment</h2>
+
+<form asp-action="Schedule" method="post">
+    <div class="form-group">
+        <label asp-for="PatientId"></label>
+        <select asp-for="PatientId" asp-items="@(new SelectList(ViewBag.Patients, "PatientId", "Name"))">
+            <option value="">Select Patient</option>
+        </select>
+        <span asp-validation-for="PatientId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DoctorId"></label>
+        <select asp-for="DoctorId" asp-items="@(new SelectList(ViewBag.Doctors, "DoctorId", "Name"))">
+            <option value="">Select Doctor</option>
+        </select>
+        <span asp-validation-for="DoctorId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="AppointmentTime"></label>
+        <input asp-for="AppointmentTime" type="datetime-local" class="form-control" />
+        <span asp-validation-for="AppointmentTime" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Reason"></label>
+        <textarea asp-for="Reason" class="form-control"></textarea>
+        <span asp-validation-for="Reason" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Schedule</button>
+</form>

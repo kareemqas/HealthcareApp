@@ -1,0 +1,30 @@
+﻿@model List<Doctor>
+
+<h2>Search Doctors</h2>
+
+<form asp-action="Search" method="get">
+    <div class="form-group">
+        <input type="text" name="searchString" class="form-control" placeholder="Search by name or specialty" />
+        <button type="submit" class="btn btn-primary mt-2">Search</button>
+    </div>
+</form>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Specialty</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var doctor in Model)
+        {
+            <tr>
+                <td>@doctor.Name</td>
+                <td>@doctor.Specialty</td>
+                <td>@doctor.Email</td>
+            </tr>
+        }
+    </tbody>
+</table>

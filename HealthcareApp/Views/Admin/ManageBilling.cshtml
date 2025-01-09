@@ -1,0 +1,29 @@
+﻿@model List<Billing>
+
+<h2>Manage Billing</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Patient</th>
+            <th>Amount</th>
+            <th>Billing Date</th>
+            <th>Is Paid</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var billing in Model)
+        {
+            <tr>
+                <td>@billing.Patient.Name</td>
+                <td>@billing.Amount</td>
+                <td>@billing.BillingDate.ToShortDateString()</td>
+                <td>@(billing.IsPaid ? "Yes" : "No")</td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Billing" asp-route-id="@billing.BillingId" class="btn btn-warning">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
